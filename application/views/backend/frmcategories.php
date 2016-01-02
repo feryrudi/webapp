@@ -41,10 +41,10 @@
 					</tr>
 					<tr>
 						<td>
-
-						
-						<img src='<? $this->uri->segment(1)?> /uploads/wm.jpg' />
-						<img width=200 height=260 src='../uploads/'<?php $pic;?>' /></td>
+						<?php if($mode=='update') {?>						
+							<a href="http://localhost/webapp/uploads/<?php echo $pic;?>"><img src="http://localhost/webapp/uploads/thumbs/<?php echo $pic;?>" /></a>
+							<?php } ?>
+						</td>
 					</tr>
 				</table>
 			</fieldset>

@@ -31,6 +31,9 @@ class Categories extends CI_Controller {
 			$this->do_upload();
 			if($this->upload->file_name)
 				$result = ($mode=='insert') ? $this->datamodel->insert_entry($this->upload->file_name) : $this->datamodel->update_entry($this->upload->file_name);
+			else
+				$result = ($mode=='insert') ? $this->datamodel->insert_entry('no_image.png') : $this->datamodel->update_entry('no_image.png');
+				
 		}
 		else if($mode=='delete')
 		{
@@ -53,7 +56,7 @@ class Categories extends CI_Controller {
 			$config_resize['overwrite'] = TRUE;
             $config_resize['maintain_ratio'] = TRUE;
             $config_resize['create_thumb'] = TRUE;
-            $config_resize['thumb_marker'] = '_thumb';
+            //$config_resize['thumb_marker'] = '_thumb';
 			//resize image
             $config_resize['width'] = 75;
             $config_resize['height'] = 50;
@@ -100,12 +103,10 @@ class Categories extends CI_Controller {
 		//membuat main image
 		$config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'gif|jpg|png';
-		$config['max_size']    = '100';
+		$config['max_size']    = '300';
 		$config['max_width']  = '1024';
 		$config['max_height']  = '768';
-		$config['create_thumb']  = TRUE;
 		$config['encrypt_name']  = TRUE;
-	
 		$this->load->library('upload', $config);
 		$this->upload->initialize($config);
 		$nama = $this->upload->file_name;
